@@ -13,17 +13,21 @@ const TicketManagement = require('../Services/ticket');
 const ticket = new TicketManagement;
 
 
-//GET /api/test
-router.get('/api/hello', (req, res) => {
-  let message = {
-    message: 'Hello World!'
-  }
-  return res.status(200).json(message);
-});
-
-
 router.post('/api/ticket', async (req, res) => {
   return ticket.NewTicket(req, res);
 });
+
+const ServiceManagerClass = require('../Services/service');
+
+const ServiceManager = new ServiceManagerClass;
+
+//GET /api/services 
+router.get('/api/services', async (req, res) => {
+  try{
+    res.status(200).json(await ServiceManager.getAllServices());
+  } catch {
+    res.status(503).end();
+  }
+})
 
 module.exports = router;

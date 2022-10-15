@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
@@ -14,8 +13,8 @@ function App() {
       </div>
       <div className="row">
        <div className="column">
-         ticket request
-       </div>
+         ticket request {/*<TicketComponent/> insteat of the textsss*/}
+        </div>
        <div className="column">
          monitor to notify client turn
        </div>
