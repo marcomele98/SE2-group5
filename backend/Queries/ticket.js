@@ -1,9 +1,6 @@
 "use strict"
 
-import { Database } from 'sqlite3';
-const db = new Database('OQM.sqlite', (err) => {
-    if (err) throw err;
-});
+const db = require('./DAO');
 
 exports.createNewTicket = (data) => {
     const sql = 'INSERT INTO Ticket (Date, Service_Code, Daily_Number) VALUES(?, ?, ?)';
