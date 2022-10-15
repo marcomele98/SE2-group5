@@ -6,7 +6,16 @@ Developed with React
 ## Backend:
 Developed with Express (Node.js)
 
+### installation:
+cd backend
+npm install
+npm run resetDB
+
+
 ## Database:
+
+The DB is in the .gitignore, in order to avoid conflicts merging different branches.
+
 
 We have 4 tables, Service, Ticket, Counter and Served_By_Counter.
 
