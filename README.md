@@ -7,9 +7,13 @@ Developed with React
 Developed with Express (Node.js)
 
 ### installation:
+<br/>
 cd backend
+
 npm install
+
 npm run resetDB
+<br/>
 
 
 ## Database:
