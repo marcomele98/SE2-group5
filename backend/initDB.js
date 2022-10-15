@@ -70,4 +70,12 @@ db.serialize(function () {
                 (1, 'B'),\
                 (2, 'A')"
     );
+
+    db.run(
+      "INSERT OR IGNORE INTO Ticket(Date, Service_Code, Daily_Number)\
+       VALUES ('2022-10-15', 'A', '1'),\
+              ('2022-10-15', 'A', '2')"
+  );
+
+
 });

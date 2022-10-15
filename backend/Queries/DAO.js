@@ -5,6 +5,8 @@ const db = new sqlite.Database('OQM.sqlite', (err) => {
     if (err) throw err;
 });
 
+db.run("PRAGMA foreign_keys = ON");
+
 exports.all = (stmt, params) => {
     return new Promise((res, rej) => {
         db.all(stmt, params, (error, result) => {
@@ -37,3 +39,5 @@ exports.run = (stmt, params) => {
         });
     })
 }
+
+

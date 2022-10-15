@@ -12,5 +12,8 @@ exports.updateTicket = (data) => {
     return db.run(updateQuery, [data.Served_By_Counter, data.Date, data.Service_Code, data.Daily_Number]);
 }
 
-
+exports.getLastNumberTicketForService = (data) => {
+    const sql = 'SELECT MAX(Daily_Number) as TicketNumber FROM Ticket WHERE Date = ? AND Service_Code = ?';
+    return db.get(sql, [data.Date, data.Service_Code]);
+}
 
