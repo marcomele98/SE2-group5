@@ -1,4 +1,6 @@
 import logo from './logo.svg';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Officer } from './Officer';
 import './App.css';
 
 function App() {
@@ -6,7 +8,7 @@ function App() {
     <div className="App">
       <div className="row">
        <div className="column">
-        counter1
+        <Officer></Officer>
        </div>
        <div className="column">
         counter1
