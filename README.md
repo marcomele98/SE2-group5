@@ -8,21 +8,21 @@ Developed with Express (Node.js)
 
 ### installation:
 
-Linux and Macos
+- Linux and Macos
 
-  -cd backend
+  - cd backend
 
-  -npm install
+  - npm install
 
-  -npm run resetDB
+  - npm run resetDB
   
-Windows
+- Windows
 
-  -cd backend
+  - cd backend
 
-  -npm install
+  - npm install
   
-  -node initDB
+  - node initDB
 
 
 ## Database:
@@ -41,11 +41,11 @@ The table Counter contains for the moment only the id of the counter.
 The table Served_By_Counter contains the information about which services are served by which counters.
 
 To reset de DB:
--Linux and Macos:
-  -npm run resetDB
--Windows:
-  -node deleteDB
-  -node initDB
+- Linux and Macos:
+  - npm run resetDB
+- Windows:
+  - node deleteDB
+  - node initDB
 To change hardcoded elements in the DB modify the file "initDB.js" and then reset de DB.
 
 
