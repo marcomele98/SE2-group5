@@ -1,5 +1,3 @@
-"use strict"
-
 function Ticket (date, service_code, daily_number, served_by_counter) {
     this.date = date;
     this.service_code = service_code;
@@ -7,4 +5,4 @@ function Ticket (date, service_code, daily_number, served_by_counter) {
     this.served_by_counter = served_by_counter;
 }
 
-exports.Ticket = Ticket;
+export default Ticket;
