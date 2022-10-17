@@ -46,8 +46,10 @@ To reset de DB:
 - Windows:
   - node deleteDB
   - node initDB
+<br/>
 To change hardcoded elements in the DB modify the file "initDB.js" and then reset de DB.
 
+### Database structure
 
 - Table `Ticket` contains:
   - `Date`
