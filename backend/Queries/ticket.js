@@ -1,16 +1,5 @@
 "use strict"
 
-const db = require('./DAO');
-
-exports.createNewTicket = (data) => {
-    const sql = 'INSERT INTO Ticket (Date, Service_Code, Daily_Number) VALUES(?, ?, ?)';
-    return db.run(sql, [data.Date, data.Service_Code, data.Daily_Number]);
-}
-
-exports.updateTicket = (data) => {
-    const updateQuery = 'UPDATE Ticket SET Served_By_Counter = ? WHERE Date =? AND Service_Code = ? AND Daily_Number = ?';
-    return db.run(updateQuery, [data.Served_By_Counter, data.Date, data.Service_Code, data.Daily_Number]);
-}
-
-
-
+const { Ticket } = require('../Services/ticket');
+const sqlite = require('sqlite3');
+const db = new sqlite.Database('OQM.sqlite', err => { if (err) throw err;});
