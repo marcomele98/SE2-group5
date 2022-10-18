@@ -17,13 +17,13 @@ exports.getNextServiceToServe= () => {
         FROM Ticket\
         WHERE Served_By_Counter IS NULL\
         GROUP BY Service_Code ORDER BY Queue_Lenght DESC LIMIT 1))';
-        db.all(sql, [], (err, rows) => {
+        db.all(sql, [], (err, row) => {
             if(err)
                 reject(err);
             else {
-                const tickets = rows.map(row => new Ticket(row.Date, row.Service_Code, row.Daily_Number, row.Served_By_Counter));
-                console.log(tickets);
-                resolve(tickets);
+                const service = new Service(row.Code, row.Name, row.Required_Time);
+                console.log(service)
+                resolve(service);
             }
         });
     });
