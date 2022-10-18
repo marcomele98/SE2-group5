@@ -92,7 +92,7 @@ function App() {
             {
               showWaitingTime &&
               <>
-                <FloatingLabel>{waitingTime ? "Estimated waiting time: " + waitingTime : "Ticket number not valid"}</FloatingLabel>
+                <FloatingLabel>{waitingTime ? "Estimated waiting time: " + waitingTime + " minutes" : "Ticket number not valid"}</FloatingLabel>
                 <Button type='success' onClick={() => {setShow(); setTimeAsked(); setWaitingTime();}}> Ok </Button>
               </>
               
