@@ -9,11 +9,6 @@ router.get('/', function(req, res, next) {
 });
 
 
-/*const TicketManagement = require('../Services/ticket');
-
-const ticket = new TicketManagement;*/
-
-
 
 //GET /api/test
 router.get('/api/hello', (req, res) => {
@@ -22,10 +17,6 @@ router.get('/api/hello', (req, res) => {
   }
   return res.status(200).json(message);
 });
-
-router.get('/api/next_ticket', (req,res) =>{
-  
-} ) 
 
 
 /*router.post('/api/ticket', async (req, res) => {
