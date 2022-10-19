@@ -4,7 +4,7 @@ const { Service } = require('../Services/service');
 const sqlite = require('sqlite3');
 const db = new sqlite.Database('OQM.sqlite', err => { if (err) throw err;});
 
-exports.getNextServiceToServe= (counterId) => {
+exports.getNextServiceToServe = (counterId) => {
     return new Promise((resolve, reject) => {
         const sql = 'SELECT *, MAX(Required_Time)\
         FROM Service S\
