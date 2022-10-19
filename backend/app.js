@@ -57,4 +57,4 @@ app.put('/api/update_ticket', async (req, res) => {
 
 app.listen(port, () => "Listening");
 
-//module.exports = app;
+module.exports = app;
