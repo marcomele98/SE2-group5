@@ -14,6 +14,8 @@ function App() {
     const nextTicket = await API.getNextTicketFromService(nextService[0].code);
     console.log(nextTicket[0]);
 
+    const updateTicket = await API.updateTicket(nextTicket[0],1);
+    
   }
 
   /*useEffect(() => {

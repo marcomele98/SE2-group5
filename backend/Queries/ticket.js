@@ -9,9 +9,9 @@ exports.createNewTicket = (data) => {
     return db.run(sql, [data.Date, data.Service_Code, data.Daily_Number]);
 }
 
-exports.updateTicket = (data) => {
+exports.updateTicket = (ticket, counter_id) => {
     const updateQuery = 'UPDATE Ticket SET Served_By_Counter = ? WHERE Date =? AND Service_Code = ? AND Daily_Number = ?';
-    return db.run(updateQuery, [data.Served_By_Counter, data.Date, data.Service_Code, data.Daily_Number]);
+    return db.run(updateQuery, [counter_id, ticket.Date, ticket.Service_Code, ticket.Daily_Number]);
 }
 
 exports.getTicketFromNumber = () => {
