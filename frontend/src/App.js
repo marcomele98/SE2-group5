@@ -11,6 +11,7 @@ function App() {
   const [service2, setService2] = useState();
   const [error1, setError1] = useState('');
   const [error2, setError2] = useState('');
+  const [lastCall, setLastCall] = useState('');
 
   const nextTicket = async(counter_id) => {
 
@@ -29,10 +30,12 @@ function App() {
     }
     else{
       if(counter_id == 1) {
+        setLastCall(1);
         setService1(nextService[0].code);
         nextTicket[0] ? setTicket1(nextTicket[0].daily_number) : setTicket1();
       }
       else {
+        setLastCall(2);
         setService2(nextService[0].code);
         nextTicket[0] ? setTicket2(nextTicket[0].daily_number) : setTicket2();
       }
@@ -77,7 +80,7 @@ function App() {
       </div>
       <div className="row">
         <div className="column">ticket request</div>
-        <div className="column"> <FloatingLabel>{ ticket1 ? "Ticket " + service1 + ticket1 + " has been called to counter 1" : ticket2 ? "Ticket " + service2 + ticket2 + " has been called to counter 2" : ""}</FloatingLabel> </div>
+        <div className="column"> <FloatingLabel>{ lastCall == 1 ? "Ticket " + service1 + ticket1 + " has been called to counter 1" : lastCall == 2 ? "Ticket " + service2 + ticket2 + " has been called to counter 2" : ""}</FloatingLabel> </div>
       </div>
     </div>
   );
