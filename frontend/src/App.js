@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Row, Button, FloatingLabel } from "react-bootstrap";
+import { Container, Row, Button, FloatingLabel, Alert } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import "./App.css";
 import API from "./API";
@@ -9,6 +9,8 @@ function App() {
   const [service1, setService1] = useState();
   const [ticket2, setTicket2] = useState(false);
   const [service2, setService2] = useState();
+  const [error1, setError1] = useState('');
+  const [error2, setError2] = useState('');
 
   const nextTicket = async(counter_id) => {
 
@@ -18,25 +20,28 @@ function App() {
     const nextTicket = await API.getNextTicketFromService(nextService[0].code);
     console.log(nextTicket[0]);
 
-    if(counter_id == 1) {
-      setService1(nextService[0].code);
-      nextTicket[0] ? setTicket1(nextTicket[0].daily_number) : setTicket1();
+    if (!nextTicket[0]){
+      if (counter_id == 1){
+        setError1("There are no more clients to serve!");
+      }
+      else
+        setError2("There are no more clients to serve!");
     }
-    else {
-      setService2(nextService[0].code);
-      nextTicket[0] ? setTicket2(nextTicket[0].daily_number) : setTicket2();
+    else{
+      if(counter_id == 1) {
+        setService1(nextService[0].code);
+        nextTicket[0] ? setTicket1(nextTicket[0].daily_number) : setTicket1();
+      }
+      else {
+        setService2(nextService[0].code);
+        nextTicket[0] ? setTicket2(nextTicket[0].daily_number) : setTicket2();
+      }
+      
+  
+      API.updateTicket(nextTicket[0],counter_id);
     }
-    
-
-    API.updateTicket(nextTicket[0],counter_id);
 
   }
-
-  /*useEffect(() => {
-    if (dirty) {
-      
-    }
-  }, [dirty])*/
 
   return (
     <div className="App">
@@ -53,6 +58,7 @@ function App() {
           <Button className={"mt-3 mx-3"} onClick={()=> nextTicket(1)}>
             Next client
           </Button>
+          {error1 ? <Alert variant='danger' onClose={() => setError1('')} dismissible>{error1}</Alert> : false}
         </div>
         <div className="column">
           <Container className={"mt-3 mx-3"}>
@@ -66,6 +72,7 @@ function App() {
           <Button className={"mt-3 mx-3"} onClick={()=> nextTicket(2)}>
             Next client
           </Button>
+          {error2 ? <Alert variant='danger' onClose={() => setError2('')} dismissible>{error2}</Alert> : false}
         </div>
       </div>
       <div className="row">
