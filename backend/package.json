@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "nodemon app.js",
     "resetDB": "node deleteDB; node initDB"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
     "dayjs": "^1.11.5",
     "debug": "~2.6.9",
     "express": "~4.16.1",
