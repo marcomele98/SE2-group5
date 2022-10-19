@@ -24,20 +24,22 @@ function App() {
     if (!nextTicket[0]){
       if (counter_id == 1){
         setError1("There are no more clients to serve!");
+        setTicket1();
       }
       else
         setError2("There are no more clients to serve!");
+        setTicket2();
     }
     else{
       if(counter_id == 1) {
         setLastCall(1);
         setService1(nextService[0].code);
-        nextTicket[0] ? setTicket1(nextTicket[0].daily_number) : setTicket1();
+        setTicket1(nextTicket[0].daily_number);
       }
       else {
         setLastCall(2);
         setService2(nextService[0].code);
-        nextTicket[0] ? setTicket2(nextTicket[0].daily_number) : setTicket2();
+        setTicket2(nextTicket[0].daily_number);
       }
       
   
