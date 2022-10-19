@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Button, FloatingLabel } from "react-bootstrap";
 import { useEffect, useState } from "react";
@@ -71,6 +72,29 @@ function App() {
       <div className="row">
         <div className="column">ticket request</div>
         <div className="column"> <FloatingLabel>{ ticket1 ? "Ticket " + service1 + ticket1 + " has been called to counter 1" : ticket2 ? "Ticket " + service2 + ticket2 + " has been called to counter 2" : ""}</FloatingLabel> </div>
+=======
+import logo from './logo.svg';
+import './App.css';
+
+function App() {
+  return (
+    <div className="App">
+      <div className="row">
+       <div className="column">
+        counter1
+       </div>
+       <div className="column">
+        counter1
+       </div>
+      </div>
+      <div className="row">
+       <div className="column">
+         ticket request
+       </div>
+       <div className="column">
+         monitor to notify client turn
+       </div>
+>>>>>>> abc6fb6c6ab522e2ac9f4adf76d6adf46beda97a
       </div>
     </div>
   );

@@ -8,11 +8,29 @@ Developed with Express (Node.js)
 
 ### installation:
 
+<<<<<<< HEAD
 cd backend
 
 npm install
 
 npm run resetDB
+=======
+- Linux and Macos
+
+  - cd backend
+
+  - npm install
+
+  - npm run resetDB
+  
+- Windows
+
+  - cd backend
+
+  - npm install
+  
+  - node initDB
+>>>>>>> abc6fb6c6ab522e2ac9f4adf76d6adf46beda97a
 
 
 ## Database:
@@ -30,9 +48,22 @@ The table Counter contains for the moment only the id of the counter.
 
 The table Served_By_Counter contains the information about which services are served by which counters.
 
+<<<<<<< HEAD
 To reset de DB you can use the command "npm run resetDB"
 To change hardcoded elements in the DB modify the file "initDB.js" and then reset de DB.
 
+=======
+To reset de DB:
+- Linux and Macos:
+  - npm run resetDB
+- Windows:
+  - node deleteDB
+  - node initDB
+<br/>
+To change hardcoded elements in the DB modify the file "initDB.js" and then reset de DB.
+
+### Database structure
+>>>>>>> abc6fb6c6ab522e2ac9f4adf76d6adf46beda97a
 
 - Table `Ticket` contains:
   - `Date`

@@ -1,14 +1,19 @@
 "use strict"
 
+<<<<<<< HEAD
 const { Ticket } = require('../Services/ticket');
 const sqlite = require('sqlite3');
 const db = new sqlite.Database('OQM.sqlite', err => { if (err) throw err;});
+=======
+const db = require('./DAO');
+>>>>>>> abc6fb6c6ab522e2ac9f4adf76d6adf46beda97a
 
 exports.createNewTicket = (data) => {
     const sql = 'INSERT INTO Ticket (Date, Service_Code, Daily_Number) VALUES(?, ?, ?)';
     return db.run(sql, [data.Date, data.Service_Code, data.Daily_Number]);
 }
 
+<<<<<<< HEAD
 exports.updateTicket = (ticket, counter_id) => {
     return new Promise((resolve, reject) => {
         console.log(ticket);
@@ -57,3 +62,12 @@ exports.getNextTicketFromService = (service_id) => {
         });
     });
 }
+=======
+exports.updateTicket = (data) => {
+    const updateQuery = 'UPDATE Ticket SET Served_By_Counter = ? WHERE Date =? AND Service_Code = ? AND Daily_Number = ?';
+    return db.run(updateQuery, [data.Served_By_Counter, data.Date, data.Service_Code, data.Daily_Number]);
+}
+
+
+
+>>>>>>> abc6fb6c6ab522e2ac9f4adf76d6adf46beda97a
