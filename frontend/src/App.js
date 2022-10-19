@@ -7,15 +7,15 @@ import API from "./API";
 function App() {
   const [ticket, setTicket] = useState(false);
 
-  const nextTicket = async() => {
+  const nextTicket = async(counter_id) => {
 
-    const nextService = await API.getNextService(1);
+    const nextService = await API.getNextService(counter_id);
     console.log(nextService);
     const nextTicket = await API.getNextTicketFromService(nextService[0].code);
     console.log(nextTicket[0]);
 
-    const updateTicket = await API.updateTicket(nextTicket[0],1);
-    
+    API.updateTicket(nextTicket[0],counter_id);
+
   }
 
   /*useEffect(() => {
@@ -36,7 +36,7 @@ function App() {
               <Row className={"fs-4"}>No Ticket</Row>
             )}
           </Container>
-          <Button className={"mt-3 mx-3"} onClick={nextTicket}>
+          <Button className={"mt-3 mx-3"} onClick={()=> nextTicket(1)}>
             Next client
           </Button>
         </div>
@@ -49,7 +49,7 @@ function App() {
               <Row className={"fs-4"}>No Ticket</Row>
             )}
           </Container>
-          <Button className={"mt-3 mx-3"} onClick={nextTicket}>
+          <Button className={"mt-3 mx-3"} onClick={()=> nextTicket(2)}>
             Next client
           </Button>
         </div>

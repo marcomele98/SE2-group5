@@ -10,8 +10,20 @@ exports.createNewTicket = (data) => {
 }
 
 exports.updateTicket = (ticket, counter_id) => {
-    const updateQuery = 'UPDATE Ticket SET Served_By_Counter = ? WHERE Date =? AND Service_Code = ? AND Daily_Number = ?';
-    return db.run(updateQuery, [counter_id, ticket.Date, ticket.Service_Code, ticket.Daily_Number]);
+    return new Promise((resolve, reject) => {
+        console.log(ticket);
+        console.log(counter_id);
+        const sql = 'UPDATE Ticket SET Served_By_Counter = ? WHERE Date =? AND Service_Code = ? AND Daily_Number = ?';
+        db.all(sql, [counter_id, ticket.date, ticket.service_code, ticket.daily_number], (err, rows) => {
+            if(err)
+                reject(err);
+            else {
+                const tickets = rows.map(row => new Ticket(row.Date, row.Service_Code, row.Daily_Number, row.Served_By_Counter));
+                console.log(tickets);
+                resolve(tickets);
+            }
+        });
+    });
 }
 
 exports.getTicketFromNumber = () => {

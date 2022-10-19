@@ -58,39 +58,16 @@ const getNextTicketFromService = async (service_id) => {
 const updateTicket = async (ticket, counter_id) => {
     const response = await fetch(SERVER_URL + '/api/update_ticket',{
         method: 'PUT',
+        headers: {'Content-Type': 'application/json',},
         body: JSON.stringify({ticket: ticket, counter_id: counter_id}),
       });
     const tickets = await response.json();
     if(response.ok) {
-        resolve(null);
+        return tickets;
     }
     else
         throw tickets;
 };
-
-
-function updateAllCourses(courses) {
-    // call: PUT /api/update-courses
-    return new Promise((resolve, reject) => {
-      fetch(new URL('update-courses', APIURL), {
-        method: 'PUT',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({courses: courses}),
-      }).then((response) => {
-        if (response.ok) {
-          resolve(null);
-        } else {
-          // analyze the cause of error
-          response.json()
-            .then((obj) => { reject(obj); }) // error message in the response body
-            .catch(() => { reject({ error: "Cannot parse server response." }) }); // something else
-        }
-      }).catch(() => { reject({ error: "Cannot communicate with the server." }) }); // connection errors
-    });
-  }
 
 const API = {getTickets, getServices, getCounters, getNextService, getNextTicketFromService, updateTicket};
 export default API;
