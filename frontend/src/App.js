@@ -5,11 +5,15 @@ import "./App.css";
 import API from "./API";
 
 function App() {
-  const [dirty, setDirty] = useState(true);
   const [ticket, setTicket] = useState(false);
 
-  function nextTicket() {
-    setTicket(!ticket);
+  const nextTicket = async() => {
+
+    const nextService = await API.getNextService(1);
+    console.log(nextService);
+    const nextTicket = await API.getNextTicketFromService(nextService[0].code);
+    console.log(nextTicket);
+    
   }
 
   /*useEffect(() => {

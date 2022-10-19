@@ -29,18 +29,18 @@ exports.getTicketFromNumber = () => {
     });
 }
 
-exports.getNextTicketFromService = (serviceCode) => {
+exports.getNextTicketFromService = (service_id) => {
     return new Promise((resolve, reject) => {
         const sql = 'SELECT * FROM Ticket\
         WHERE Served_By_Counter IS NULL AND Service_Code = ?\
         ORDER BY Daily_Number LIMIT 1';
-        db.all(sql, [serviceCode], (err, row) => {
+        db.all(sql, [service_id], (err, rows) => {
             if(err)
                 reject(err);
             else {
-                const ticket = new Ticket(row.Date, row.Service_Code, row.Daily_Number, row.Served_By_Counter);
-                console.log(ticket);
-                resolve(ticket);
+                const tickets = rows.map(row => new Ticket(row.Date, row.Service_Code, row.Daily_Number, row.Served_By_Counter));
+                console.log(tickets);
+                resolve(tickets);
             }
         });
     });

@@ -45,5 +45,15 @@ const getNextService = async (counter_id) => {
         throw services;
 }
 
-const API = {getTickets, getServices, getCounters};
+const getNextTicketFromService = async (service_id) => {
+    const response = await fetch(SERVER_URL + '/api/next_ticket/' + service_id );
+    const tickets = await response.json();
+    if(response.ok) {
+        return tickets.map(t => new Ticket(t.date, t.service_code, t.daily_number, t.served_by_counter));
+    }
+    else
+        throw tickets;
+};
+
+const API = {getTickets, getServices, getCounters, getNextService, getNextTicketFromService};
 export default API;

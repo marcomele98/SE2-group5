@@ -43,6 +43,12 @@ app.get('/api/next_service/:counter_id', async (req, res) => {
   .catch(() => res.status(500).end);
 });
 
+app.get('/api/next_ticket/:service_id', async (req, res) => {
+  ticket_DAO.getNextTicketFromService(req.params.service_id)
+  .then(tickets => {res.json(tickets)})
+  .catch(() => res.status(500).end);
+});
+
 app.listen(port, () => "Listening");
 
 //module.exports = app;
