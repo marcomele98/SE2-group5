@@ -32,7 +32,9 @@ function App() {
 
       const time_required = required_service.required_time;
 
-      const service_queue = tickets.filter(t => t.service_code == required_service.code && t.served_by_counter == null).length;
+      const filtered_tickets = tickets.filter(t => t.service_code == required_service.code && t.served_by_counter == null);
+
+      const service_queue = filtered_tickets.slice(0, filtered_tickets.indexOf(ticket)).length;
 
       let sum_k_s = 0.0;
 
@@ -53,10 +55,24 @@ function App() {
       console.log("Queue length = ", service_queue);
       console.log("Sum = ", sum_k_s);
 
-      const final_result = time_required * ((service_queue / sum_k_s) + 0.5);
+      var final_result = (time_required * ((service_queue / sum_k_s) + 0.5) * 60).toFixed(2);
+      console.log(final_result);
 
-      setWaitingTime(final_result);
+      var minutes = Math.floor(final_result / 60);
+      console.log(minutes);
+      var seconds = final_result % 60;
+      console.log(seconds);
+    
+      var finalTime = str_pad_left(minutes,'0',2)+':'+str_pad_left(seconds,'0',2);
+      console.log(finalTime);
+
+      setWaitingTime(finalTime);
     }
+  }
+
+  
+  function str_pad_left(string,pad,length) {
+    return (new Array(length+1).join(pad)+string).slice(-length);
   }
 
 
