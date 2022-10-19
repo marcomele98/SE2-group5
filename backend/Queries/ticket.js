@@ -1,8 +1,9 @@
 "use strict"
 
 const { Ticket } = require('../Services/ticket');
-const sqlite = require('sqlite3');
-const db = new sqlite.Database('OQM.sqlite', err => { if (err) throw err;});
+//const sqlite = require('sqlite3');
+//(const db = new sqlite.Database('OQM.sqlite', err => { if (err) throw err;});
+const db = require('./DAO');
 
 exports.createNewTicket = (data) => {
     const sql = 'INSERT INTO Ticket (Date, Service_Code, Daily_Number) VALUES(?, ?, ?)';

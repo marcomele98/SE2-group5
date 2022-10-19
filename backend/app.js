@@ -1,48 +1,41 @@
-'use strict';
+var createError = require('http-errors');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
 
-const express = require('express');
-const morgan = require('morgan');
-const ticket_DAO = require('./Queries/ticket');
-const service_DAO = require('./Queries/service');
-const counter_DAO = require('./Queries/counter');
-const cors = require('cors');
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
 
-const app = express();
-const port = 3001;
+var app = express();
 
-app.use(morgan('dev'));
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+
+app.use(logger('dev'));
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
-const corsOptions = {
-    origin: 'http://localhost:3000',
-    optionsSuccessStatus: 200,
-};
-app.use(cors(corsOptions));
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
 
-app.get('/api/tickets', async (req, res) => {
-  ticket_DAO.getTicketFromNumber()
-  .then(tickets => {res.json(tickets)})
-  .catch(() => res.status(500).end);
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
 });
 
-app.get('/api/services', async (req, res) => {
-  service_DAO.getServices()
-  .then(services => {res.json(services)})
-  .catch(() => res.status(500).end);
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
 });
 
-app.get('/api/counters', async (req, res) => {
-  counter_DAO.getCounters()
-  .then(counters => {res.json(counters)})
-  .catch(() => res.status(500).end);
-});
-
-app.get('/api/next_service_served', async (req, res) => {
-  service_DAO.getNextServiceToServe()
-  .then(service => {res.json(service)})
-  .catch(() => res.status(500).end);
-});
-
-app.listen(port, () => "Listening");
-
-//module.exports = app;
+module.exports = app;

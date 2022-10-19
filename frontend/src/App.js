@@ -1,11 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Button } from "react-bootstrap";
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import "./App.css";
 import API from "./API";
 
 function App() {
-
   const [dirty, setDirty] = useState(true);
   const [ticket, setTicket] = useState(false);
 
@@ -25,15 +24,29 @@ function App() {
         <div className="column">
           <Container className={"mt-3 mx-3"}>
             <Row className={"fs-3"}>Welcome officer1!</Row>
-            {ticket?
-              <Row className={"fs-4"}>Ticket Disponile</Row>
-              :
+            {ticket ? (
+              <Row className={"fs-4"}>Ticket Disponibile</Row>
+            ) : (
               <Row className={"fs-4"}>No Ticket</Row>
-              }
+            )}
           </Container>
-          <Button className={"mt-3 mx-3"} onClick={nextTicket}>Next client</Button>
+          <Button className={"mt-3 mx-3"} onClick={nextTicket}>
+            Next client
+          </Button>
         </div>
-        <div className="column">counter1</div>
+        <div className="column">
+          <Container className={"mt-3 mx-3"}>
+            <Row className={"fs-3"}>Welcome officer2!</Row>
+            {ticket ? (
+              <Row className={"fs-4"}>Ticket Disponibile</Row>
+            ) : (
+              <Row className={"fs-4"}>No Ticket</Row>
+            )}
+          </Container>
+          <Button className={"mt-3 mx-3"} onClick={nextTicket}>
+            Next client
+          </Button>
+        </div>
       </div>
       <div className="row">
         <div className="column">ticket request</div>
