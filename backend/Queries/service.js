@@ -12,7 +12,6 @@ exports.getServices = () => {
                 reject(err);
             else {
                 const services = rows.map(row => new Service(row.Code, row.Name, row.Required_Time));
-                console.log(services)
                 resolve(services);
             }
         });
@@ -21,7 +20,7 @@ exports.getServices = () => {
 
 exports.getNextServiceToServe = (counter_id) => {
     return new Promise((resolve, reject) => {
-        const sql = 'SELECT *, MAX(Required_Time)\
+        const sql = 'SELECT *, MIN(Required_Time)\
         FROM Service S\
         WHERE Code in (SELECT Service_Code\
         FROM Ticket T\
@@ -38,7 +37,6 @@ exports.getNextServiceToServe = (counter_id) => {
                 reject(err);
             else {
                 const services = rows.map(row => new Service(row.Code, row.Name, row.Required_Time));
-                console.log(services)
                 resolve(services);
             }
         });

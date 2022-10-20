@@ -24,9 +24,6 @@ const TicketManagement = require('./Services/ticket');
 
 const ticket = new TicketManagement;
 
-const ServiceManagerClass = require('./Services/service');
-
-const ServiceManager = new ServiceManagerClass;
 
 //POST /api/ticket
 app.post('/api/ticket', async (req, res) => {

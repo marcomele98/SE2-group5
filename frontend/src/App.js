@@ -18,10 +18,10 @@ function App() {
   const nextTicket = async(counter_id) => {
 
     const nextService = await API.getNextService(counter_id);
-    console.log(nextService);
+
     
     const nextTicket = await API.getNextTicketFromService(nextService[0].code);
-    console.log(nextTicket[0]);
+
 
     if (!nextTicket[0]){
       if (counter_id == 1){

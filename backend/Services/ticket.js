@@ -8,6 +8,7 @@ class Ticket {
     constructor() { }
 
     async NewTicket(req, res) {
+        console.log(req.body)
         var now = dayjs();
         var Date = now.format("YYYY-MM-DD");
         if (req.body.Service_Code == null) {
@@ -22,6 +23,7 @@ class Ticket {
         } else {
             newNum = MaxNum + 1;
         }
+
         try {
             const data = { "Date": Date, "Service_Code": req.body.Service_Code, "Daily_Number": newNum }
             await db.createNewTicket(data);
