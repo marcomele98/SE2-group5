@@ -4,7 +4,9 @@ import Counter from './Actors/counter';
 const SERVER_URL = 'http://localhost:3001';
 
 const getTickets = async (ticket_number) => {
+    console.log("API.js");
     const response = await fetch(SERVER_URL + '/api/tickets');
+    console.log(response);
     const tickets = await response.json();
     if(response.ok) {
         return tickets.map(t => new Ticket(t.date, t.service_code, t.daily_number, t.served_by_counter));
@@ -67,22 +69,5 @@ const updateTicket = async (ticket, counter_id) => {
         throw tickets;
 };
 
-const newTicket = async (Service_Code) => {
-    console.log(Service_Code)
-    const response = await fetch(SERVER_URL + '/api/ticket',{
-        method: 'POST',
-        headers: {'Content-Type': 'application/json',},
-        body: JSON.stringify({Service_Code: Service_Code}),
-      });
-    const number = await response.json();
-    console.log(number)
-    if(response.ok) {
-        return number;
-    }
-    else
-        throw number;
-};
-
-
-const API = {getTickets, getServices, getCounters, getNextService, getNextTicketFromService, updateTicket, newTicket};
+const API = {getTickets, getServices, getCounters, getNextService, getNextTicketFromService, updateTicket};
 export default API;

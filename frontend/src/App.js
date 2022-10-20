@@ -1,6 +1,8 @@
-<<<<<<< HEAD
+
+import './App.css';
+import TicketScreen from './components/ticketScreen'
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Row, Button, FloatingLabel } from "react-bootstrap";
+import { Container, Row, Button, FloatingLabel, Alert } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import "./App.css";
 import API from "./API";
@@ -10,34 +12,44 @@ function App() {
   const [service1, setService1] = useState();
   const [ticket2, setTicket2] = useState(false);
   const [service2, setService2] = useState();
+  const [error1, setError1] = useState('');
+  const [error2, setError2] = useState('');
+  const [lastCall, setLastCall] = useState('');
 
-  const nextTicket = async(counter_id) => {
+  const nextTicket = async (counter_id) => {
 
     const nextService = await API.getNextService(counter_id);
-    console.log(nextService);
-    
-    const nextTicket = await API.getNextTicketFromService(nextService[0].code);
-    console.log(nextTicket[0]);
 
-    if(counter_id == 1) {
-      setService1(nextService[0].code);
-      nextTicket[0] ? setTicket1(nextTicket[0].daily_number) : setTicket1();
+
+    const nextTicket = await API.getNextTicketFromService(nextService[0].code);
+
+
+    if (!nextTicket[0]) {
+      if (counter_id == 1) {
+        setError1("There are no more clients to serve!");
+        setTicket1();
+      }
+      else
+        setError2("There are no more clients to serve!");
+      setTicket2();
     }
     else {
-      setService2(nextService[0].code);
-      nextTicket[0] ? setTicket2(nextTicket[0].daily_number) : setTicket2();
-    }
-    
+      if (counter_id == 1) {
+        setLastCall(1);
+        setService1(nextService[0].code);
+        setTicket1(nextTicket[0].daily_number);
+      }
+      else {
+        setLastCall(2);
+        setService2(nextService[0].code);
+        setTicket2(nextTicket[0].daily_number);
+      }
 
-    API.updateTicket(nextTicket[0],counter_id);
+
+      API.updateTicket(nextTicket[0], counter_id);
+    }
 
   }
-
-  /*useEffect(() => {
-    if (dirty) {
-      
-    }
-  }, [dirty])*/
 
   return (
     <div className="App">
@@ -51,9 +63,10 @@ function App() {
               <Row className={"fs-4"}>No Ticket</Row>
             )}
           </Container>
-          <Button className={"mt-3 mx-3"} onClick={()=> nextTicket(1)}>
+          <Button className={"mt-3 mx-3"} onClick={() => nextTicket(1)}>
             Next client
           </Button>
+          {error1 ? <Alert variant='danger' onClose={() => setError1('')} dismissible>{error1}</Alert> : false}
         </div>
         <div className="column">
           <Container className={"mt-3 mx-3"}>
@@ -64,37 +77,19 @@ function App() {
               <Row className={"fs-4"}>No Ticket</Row>
             )}
           </Container>
-          <Button className={"mt-3 mx-3"} onClick={()=> nextTicket(2)}>
+          <Button className={"mt-3 mx-3"} onClick={() => nextTicket(2)}>
             Next client
           </Button>
+          {error2 ? <Alert variant='danger' onClose={() => setError2('')} dismissible>{error2}</Alert> : false}
         </div>
       </div>
       <div className="row">
-        <div className="column">ticket request</div>
-        <div className="column"> <FloatingLabel>{ ticket1 ? "Ticket " + service1 + ticket1 + " has been called to counter 1" : ticket2 ? "Ticket " + service2 + ticket2 + " has been called to counter 2" : ""}</FloatingLabel> </div>
-=======
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <div className="row">
-       <div className="column">
-        counter1
-       </div>
-       <div className="column">
-        counter1
-       </div>
-      </div>
-      <div className="row">
-       <div className="column">
-         ticket request
-       </div>
-       <div className="column">
-         monitor to notify client turn
-       </div>
->>>>>>> abc6fb6c6ab522e2ac9f4adf76d6adf46beda97a
+        <div className="column">
+          <TicketScreen></TicketScreen>
+        </div>
+        <div className="column">
+          <FloatingLabel className={"fs-4 mt-3 mx-3"}>{lastCall == 1 ? "Ticket " + service1 + ticket1 + " has been called to counter 1" : lastCall == 2 ? "Ticket " + service2 + ticket2 + " has been called to counter 2" : ""}</FloatingLabel> 
+        </div>
       </div>
     </div>
   );

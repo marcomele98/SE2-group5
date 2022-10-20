@@ -1,9 +1,10 @@
 "use strict"
 
-<<<<<<< HEAD
+
 const { Service } = require('../Services/service');
 const sqlite = require('sqlite3');
 const db = new sqlite.Database('OQM.sqlite', err => { if (err) throw err;});
+
 
 exports.getServices = () => {
     return new Promise((resolve, reject) => {
@@ -13,16 +14,16 @@ exports.getServices = () => {
                 reject(err);
             else {
                 const services = rows.map(row => new Service(row.Code, row.Name, row.Required_Time));
-                console.log(services)
                 resolve(services);
             }
         });
     });
 }
 
+
 exports.getNextServiceToServe = (counter_id) => {
     return new Promise((resolve, reject) => {
-        const sql = 'SELECT *, MAX(Required_Time)\
+        const sql = 'SELECT *, MIN(Required_Time)\
         FROM Service S\
         WHERE Code in (SELECT Service_Code\
         FROM Ticket T\
@@ -39,18 +40,10 @@ exports.getNextServiceToServe = (counter_id) => {
                 reject(err);
             else {
                 const services = rows.map(row => new Service(row.Code, row.Name, row.Required_Time));
-                console.log(services)
                 resolve(services);
             }
         });
     });
 }
-=======
-import { Database } from 'sqlite3';
-const db = new Database('OQM.sqlite', (err) => {
-    if (err) throw err;
-});
 
-
->>>>>>> abc6fb6c6ab522e2ac9f4adf76d6adf46beda97a
 

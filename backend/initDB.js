@@ -70,17 +70,19 @@ db.serialize(function () {
                 (1, 'B'),\
                 (2, 'A')"
     );
-<<<<<<< HEAD
+
 
     db.run(
-      "INSERT OR IGNORE INTO Ticket(Date, Service_Code,Daily_Number,Served_By_Counter)\
-       VALUES ('2022-10-17', 'A', 1, 1),\
-              ('2022-10-17', 'B', 2, 1),\
-              ('2022-10-17', 'A', 3, 2),\
-              ('2022-10-17', 'A', 4, NULL),\
-              ('2022-10-17', 'A', 5, NULL),\
-              ('2022-10-17', 'B', 6, NULL)"
+      "INSERT OR IGNORE INTO Ticket(Date, Service_Code, Daily_Number)\
+       VALUES ('2022-10-20', 'A', '1'),\
+              ('2022-10-20', 'A', '2'),\
+              ('2022-10-20', 'A', '3'),\
+              ('2022-10-20', 'A', 4),\
+              ('2022-10-20', 'A', 5),\
+              ('2022-10-20', 'B', 1),\
+              ('2022-10-20', 'A', 6),\
+              ('2022-10-20', 'A', 7),\
+              ('2022-10-20', 'B', 2)"
   );
-=======
->>>>>>> abc6fb6c6ab522e2ac9f4adf76d6adf46beda97a
+
 });
