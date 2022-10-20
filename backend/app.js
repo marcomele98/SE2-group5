@@ -39,4 +39,4 @@ app.get('/api/counters', async (req, res) => {
 
 app.listen(port, () => "Listening");
 
-//module.exports = app;
+module.exports = app;
