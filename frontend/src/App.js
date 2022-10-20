@@ -6,6 +6,7 @@ import { Container, Row, Button, FloatingLabel, Alert, Form } from "react-bootst
 import { useEffect, useState } from "react";
 import "./App.css";
 import API from "./API";
+import Ticket from './Actors/ticket';
 
 function App() {
 
@@ -184,7 +185,7 @@ function App() {
         </div>
         <div className="column">
           
-          <FloatingLabel className={"fs-4 mt-3 mx-3"}>{lastCall == 1 ? "Ticket " + service1 + ticket1 + " has been called to counter 1" : lastCall == 2 ? "Ticket " + service2 + ticket2 + " has been called to counter 2" : "No ticket called"}</FloatingLabel> 
+          <FloatingLabel className={"fs-4 mt-3 mx-3"}>{(lastCall == 1 && ticket1) ? "Ticket " + service1 + ticket1 + " has been called to counter 1" : (lastCall == 2 && ticket2) ? "Ticket " + service2 + ticket2 + " has been called to counter 2" : "No ticket called"}</FloatingLabel> 
         </div>
       </div>
     </div>
