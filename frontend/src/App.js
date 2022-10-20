@@ -1,4 +1,5 @@
 import './App.css';
+import TicketScreen from './components/ticketScreen'
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       </div>
       <div className="row">
        <div className="column">
-         ticket request {/*<TicketComponent/> insteat of the textsss*/}
+         <TicketScreen></TicketScreen>
         </div>
        <div className="column">
          monitor to notify client turn
