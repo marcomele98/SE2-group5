@@ -11,3 +11,7 @@
 .column {
   flex: 0.5;
 }
+
+.column_low {
+  flex: 0.3;
+}

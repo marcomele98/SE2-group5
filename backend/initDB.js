@@ -85,4 +85,5 @@ db.serialize(function () {
               ('2022-10-20', 'B', 2)"
   );
 
+
 });

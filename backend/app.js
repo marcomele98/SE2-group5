@@ -1,6 +1,5 @@
 'use strict';
 
-
 const express = require('express');
 const morgan = require('morgan');
 const ticket_DAO = require('./Queries/ticket');
@@ -37,7 +36,6 @@ app.get('/api/tickets', async (req, res) => {
   .then(tickets => {res.json(tickets)})
   .catch(() => res.status(500).end);
 });
-
 
 app.get('/api/services', async (req, res) => {
   service_DAO.getServices()
