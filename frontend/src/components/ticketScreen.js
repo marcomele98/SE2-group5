@@ -6,6 +6,7 @@ import { Button, } from "react-bootstrap";
 function TicketScreen() {
   const [number, setNumber] = useState(undefined) //if set show number is true show number insthead of the buttons with services 
   const [services, setServices] = useState([])
+  const [remainimgTime, setRemainingTime] = useState()
 
   const initServices = async () => {
     let servs = await API.getServices();
@@ -15,9 +16,9 @@ function TicketScreen() {
   const newTicket = async (Service_Code) => {
     let num = undefined;
     console.log(Service_Code)
-    try{
+    try {
       num = await API.newTicket(Service_Code);
-    }catch{
+    } catch {
       num = "Errore del server";
     }
     setNumber(num)
@@ -30,23 +31,47 @@ function TicketScreen() {
 
   useEffect(() => {
     if (number) {
-      setTimeout(() => setNumber(undefined), 5000)
+      setRemainingTime(5)
     }
   }, [number]) // after 5 seconds of number showing i show again buttons
+
+
+  useEffect(() => {
+    if ( remainimgTime!==0 ) {
+      setTimeout(()=>setRemainingTime(time=>time-1), 1000)
+    } else {
+      setNumber(undefined)
+    }
+  }, [remainimgTime]) // after 5 seconds of number showing i show again buttons
+
   return (
-    (number)
-      ?
-      <div className={"fs-3 mt-3 mx-3"}>
-        {"Your ticket code is: "+number}
-      </div>
-      :
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <div className={"fs-3 mt-3 mx-3"}>Select your service.</div>
-        {services.map(s => 
-        <Button style={{width:"fit-content"}} className={"mt-3 mx-3"} onClick={()=>{newTicket(s.code)}}>
-          {s.name}
-        </Button>)}
-      </div>
+
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      {(number)
+        ?
+        <>
+          <div className={"fs-3 mt-3 mx-3"}>
+            {"Your ticket code is: "}
+          </div>
+          <div className={"fs-1 mt-3 mx-3"}>
+            {number}
+          </div>
+          <div className={"fs-5 mt-3 mx-3"}>
+            {remainimgTime+" seconds"}
+          </div>
+        </>
+        :
+        <>
+          <div className={"fs-3 mt-3 mx-3"}>Select your service.</div>
+          {
+            services.map(s =>
+              <Button style={{ width: "fit-content" }} className={"mt-3 mx-3"} onClick={() => { newTicket(s.code) }}>
+                {s.name}
+              </Button>)
+          }
+        </>
+      }
+    </div>
   );
 }
 
