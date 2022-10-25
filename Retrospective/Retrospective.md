@@ -42,14 +42,13 @@ sections:
 
 
 - Hours per task average, standard deviation (estimate and actual)
-  Estimated task average: (48h 30m/21) = 2h 20m 
-  Actual task average: (47h 50m/21) = 2h 15m
-  Estimated standard deviation: 3.134
-  Actual standard deviation: 3.406
+  - Estimated task average: (48h 30m/21) = 2h 20m 
+  - Actual task average: (47h 50m/21) = 2h 15m
+  - Estimated standard deviation: 3.134
+  - Actual standard deviation: 3.406
   
   <br>
-- Total task estimation error ratio: sum of total hours estimation / sum of total hours spent - 1
-(1,01 - 1) = 0.01
+- Total task estimation error ratio: sum of total hours estimation / sum of total hours spent - 1: (1,01 - 1) = 0.01
 
   
 ## QUALITY MEASURES 
@@ -89,6 +88,6 @@ sections:
 
     Define a structure of the application and of the database and all of us have to follow it in order to avoid conflicts and produce a coherent software. Better comunication and more scrum meetings.
   <br>
-- One thing you are proud of as a Team!!ù
+- One thing you are proud of as a Team!!
 
     Despite all the difficulties we encountered everyone help each other so we were able to deliver what we planned to deliver.
