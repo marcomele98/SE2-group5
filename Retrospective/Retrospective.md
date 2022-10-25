@@ -1,4 +1,4 @@
-TEMPLATE FOR RETROSPECTIVE (Team ##)
+TEMPLATE FOR RETROSPECTIVE (Team 5)
 =====================================
 
 The retrospective should include _at least_ the following
@@ -42,8 +42,10 @@ sections:
 
 
 - Hours per task average, standard deviation (estimate and actual)
-  estimated: (48h 30m/21) = 2h 20m 
-  actual: (47h 50m/21) = 2h 15m
+  Estimated task average: (48h 30m/21) = 2h 20m 
+  Actual task average: (47h 50m/21) = 2h 15m
+  Estimated standard deviation: 3.134
+  Actual standard deviation: 3.406
   
   <br>
 - Total task estimation error ratio: sum of total hours estimation / sum of total hours spent - 1
@@ -87,5 +89,6 @@ sections:
 
     Define a structure of the application and of the database and all of us have to follow it in order to avoid conflicts and produce a coherent software. Better comunication and more scrum meetings.
   <br>
-- One thing you are proud of as a Team!!
+- One thing you are proud of as a Team!!ù
+
     Despite all the difficulties we encountered everyone help each other so we were able to deliver what we planned to deliver.
